@@ -1,0 +1,30 @@
+sms_api: https://<YOUR URL>
+log_api: https://<YOUR URL>
+sms_api_key: 'xyz'
+log_api_key: 'xyz' # Key to upload results.
+refresh_time  : 300         # Minimal time to next check (loop) 0 = no loop.
+sms_interval  : 3600        # Minimal interval before next SMS.
+trials        : 3           # Number of trials before send SMS.
+default_number: '123456789'
+log_file      : 'monitor.log'
+
+hosts:
+
+  WP:
+    url: https://wp.pl
+    idle_time: '18:00 - 22:30'
+    verify_ssl: True
+    upload: False
+    send_sms: False
+    tests: # It has to be implemented in tests.py
+      - httping
+
+  INTERIA:
+    url: https://interia.pl
+    idle_time: '22:30 - 06:00'
+    verify_ssl: True
+    upload: True
+    send_sms:
+      - '123456789'
+    tests:
+      - httping
